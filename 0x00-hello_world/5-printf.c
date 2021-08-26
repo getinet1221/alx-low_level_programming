@@ -1,4 +1,4 @@
-#include "stdio.h"
+#include <stdio.h>
 /**
  * Use the function printf
  * You are not allowed to use the function puts
@@ -7,6 +7,6 @@
 */
 int main (void)
 {
-	printf ("\"with proper grammar, but the outcome is a piece of art,");
+	printf ("%s","with proper grammar, but the outcome is a piece of art,\n");
 	return (0);
 }
