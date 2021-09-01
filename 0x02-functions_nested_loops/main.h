@@ -1,2 +1,2 @@
 #include <stdio.h>
-int _putchar (const char *string);
+int _putchar (char char1);
