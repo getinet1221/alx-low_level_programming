@@ -1,11 +1,11 @@
 #include <stdio.h>
-#include "main.h"
 
 /**
 * main - prints the largest of 3 integers
 * Return: 0
 */
 
+void positive_or_negative(int i);
 int main(void)
 {
         int a, b, c;
