@@ -1,5 +1,5 @@
-//#import "https://github.com/holbertonschool/0x04.c"
-#import "main.h"
+#include "https://github.com/holbertonschool/0x04.c"
+#include "main.h"
 /**
  * main -
  * Return:
