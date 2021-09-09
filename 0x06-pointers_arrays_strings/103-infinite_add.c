@@ -1,40 +1,68 @@
 #include "main.h"
-#include <stdio.h>
-/**
- * infinite_add - Adds two numbers
- * @n1: first input string
- * @n2: second input string
- * @r: pointer to buffer where result is stored
- * @size_r: requested size for the buffer
- * Return: pointer to buffer where result is stored
- */
 
+/**
+ * _strlen - returns the length of a string
+ * @s: the string whose length to check
+ *
+ * Return: integer length of string
+ */
+int _strlen(char *s)
+{
+	int i = 0;
+
+	while (*s++)
+		i++;
+	return (i);
+}
+
+/**
+ * rev_string - reverses a string
+ * @s: the string to reverse
+ *
+ * Return: void
+ */
+char *rev_string(char *s)
+{
+	int l = _strlen(s), i = 0;
+	char t;
+
+	for (i = 0; i < l / 2; i++)
+	{
+		t = s[l - i - 1];
+		s[l - i - 1] = s[i];
+		s[i] = t;
+	}
+	return (s);
+}
+
+/**
+ * infinite_add - adds arbitrarily long string of digits
+ * @n1: the first digit string
+ * @n2: the second digit string
+ * @r: the result buffer
+ * @size_r: the size of result buffer
+ *
+ * Return: char pointer to buffer
+ */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	/* i = iterator for n1 and n2; j = iterator for r; n = carry over number */
-	int i, j, n;
-	
-	i = j = n = 0;
-	/* if r[0] >= 10, set value to 1 & increase buffer size by 1*/
-	if ((n1[0] - '0') + (n2[0] - '0') >= 10)
+	int l1 = _strlen(n1), l2 = _strlen(n2), i = 0, a, b, c = 0;
+
+	for (l1--, l2--, size_r--; l1 >= 0 || l2 >= 0 || c; l1--, l2--, i++)
 	{
-		r[0] = 1 + '0';
-		j = 1;
+		if (i >= size_r)
+			return (0);
+		a = 0;
+		b = 0;
+		if (l1 >= 0)
+			a = n1[l1] - '0';
+		if (l2 >= 0)
+			b = n2[l2] - '0';
+		a = a + b + c;
+		c = a / 10;
+		a %= 10;
+		r[i] = a + '0';
 	}
-	while (i < size_r && (n1[i] != '\0' || n2[i] != '\0' || r[j] != '\0'))
-	{
-		if ((n1[i + 1] - '0') + (n2[i + 1] - '0') >= 10)
-			n = 1;
-		else
-			n = 0;
-		r[j] = (n1[i] - '0') + (n2[i] - '0') + n;
-		r[j] = r[j] % 10 + '0';
-/*		printf("i: %d, n1: %d, n2: %d, j: %d, r: %d\n", i, n1[i] - '0', n2[i] - '0', j, r[j]- '0'); debug*/
-		i++;
-		j++;
-		if (n1[i] == '\0' || n2[i] == '\0')
-			r[j] = '\0';
-	}
-	r[j] = '\0';
-	return (r);
+	r[i] = '\0';
+	return (rev_string(r));
 }
