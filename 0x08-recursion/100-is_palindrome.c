@@ -1,39 +1,40 @@
-#include <stdio.h>
 #include "main.h"
-void main()
+
+/**
+ * _strlen_recursion - function that returns the length of a string
+ *
+ * @s: parameter defined in main, pointer to memory (string)
+ *
+ * Return: integer, length of the string
+ */
+
+int _strlen_recursion(char *s)
 {
-    char str[100],rstr[100];
-    int i,j,lenstr,f=0,k;
-
-    printf("\nEnter a string \t:");
-    scanf("%s",str);
-
-    for(i=0;str[i]!='\0' ;i++);
-    lenstr=i;
-
-    for(j=lenstr-1,k=0;j!=-1;j--,k++)
-    {
-        rstr[k]=str[j];
-    }
-
-    rstr[k]='\0';
-
-
-    for(i=0,j=0;str[j]!='\0'&&str[j]!='\0';i++,j++)
-    {
-        if(rstr[j]!=str[i])
-        {
-            f++;
-        }
-
-
-    }
-        if(f!=0)
-        {
-            printf("\nString is not Palindrome");
-        }
-     else
-        {
-            printf("\nString is Palindrome");
-        }
+	if (*s == '\0')
+	{
+		return (0);
+	}
+	s++;
+	return (1 + _strlen_recursion(s));
 }
+
+/**
+ * is_palindrome - function that returns 1 if a string is a palindrome
+ * and 0 if not
+ *
+ * @s: parameter defined in main, pointer to memory (string)
+ *
+ * Return: 0 or 1
+ */
+
+int is_palindrome(char *s)
+{
+	int len;
+
+	len = _strlen_recursion(s);
+	return (tmp3(s, len));
+}
+
+/**
+ * tmp3 - subfunction for is_palindrome
+
