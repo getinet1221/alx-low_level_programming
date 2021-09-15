@@ -1,38 +1,39 @@
 #include <stdio.h>
 #include "main.h"
-/**
- * _strlen_recursion - returns the length of a string.
- * @s: the string to count
- * Return: length of the string
- */
-int _strlen_recursion(char *s)
+void main()
 {
-	if (*s)
-	{
-		s++;
-		return (1 + _strlen_recursion(s));
-	}
-	return (0);
-}
-/**
- * checker - helper function for is_palindrome
- * @str: the string
- * @len: length of string
- * @count: counter of recursion
- * Return: 1 if string is a palindrome, 0 if it is not.
- */
-int checker(char *str, int len, int count)
-{
-	if (count >= len)
-		return (1);
-	if (str[len] == str[count])
-		return (checker(str, len - 1, count + 1));
-	return (0);
-}
-/**
- * is_palindrome - checks if the string is a palindrome
- * @s: the string to check
- * Return: 1 if string is a palindrome, 0 if it is not.
- */
-int is_palindrome(char *s)
+    char str[100],rstr[100];
+    int i,j,lenstr,f=0,k;
 
+    printf("\nEnter a string \t:");
+    scanf("%s",str);
+
+    for(i=0;str[i]!='\0' ;i++);
+    lenstr=i;
+
+    for(j=lenstr-1,k=0;j!=-1;j--,k++)
+    {
+        rstr[k]=str[j];
+    }
+
+    rstr[k]='\0';
+
+
+    for(i=0,j=0;str[j]!='\0'&&str[j]!='\0';i++,j++)
+    {
+        if(rstr[j]!=str[i])
+        {
+            f++;
+        }
+
+
+    }
+        if(f!=0)
+        {
+            printf("\nString is not Palindrome");
+        }
+     else
+        {
+            printf("\nString is Palindrome");
+        }
+}
