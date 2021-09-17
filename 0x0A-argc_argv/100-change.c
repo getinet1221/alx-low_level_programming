@@ -1,35 +1,38 @@
 #include <stdio.h>
-#include <ctype.h>
 #include <stdlib.h>
-#include <string.h>
 
-int main(int argc, char *argv[])
+/**
+ * main - function to print out the change that needs to given
+ * @argc: number of arguments to be passed
+ * @argv: number of variables to calculate
+ * Return: always 0 for sucess
+ */
+
+int main(int argc, char **argv)
 {
-	unsigned int cents;
-	int coins;
+	int total, change;
 
-	cents = coins = 0;
-	if (argc == 2)
+	if (argc < 2)
 	{
-		if (argv[1][0] == '-')
-			printf("0\n");
-		if (checker(argc, 1, 0, argv) == 0)
-		{
-			cents = atoi(argv[1]);
-			for ( ; cents >= 25; coins++, cents -= 25)
-				;
-			for ( ; cents >= 10; coins++, cents -= 10)
-				;
-			for ( ; cents >= 5; coins++, cents -= 5)
-				;
-			for ( ; cents >= 2; coins++, cents -= 2)
-				;
-			for ( ; cents >= 1; coins++, cents--)
-				;
-			printf("%d\n", coins);
-		}
-	}
-	else
 		printf("Error\n");
+		return (1);
+	}
+
+	change = atoi(argv[1]);
+
+	for (total = 0; change > 0; total++)
+	{
+		if (change - 25 >= 0)
+			change = change - 25;
+		else if (change - 10 >= 0)
+			change = change - 10;
+		else if (change - 5 >= 0)
+			change = change - 5;
+		else if (change - 2 >= 0)
+			change = change - 2;
+		else if (change - 1 >= 0)
+			change = change - 1;
+	}
+	printf("%d\n", total);
 	return (0);
 }
