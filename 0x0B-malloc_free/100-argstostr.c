@@ -2,32 +2,85 @@
 #include <stdlib.h>
 #include <stdio.h>
 /**
- * *_realloc - function that reallocates a memory block using malloc and free.
- * @old_size: parameter being copied.
- * @new_size: parameter being copied into.
- * @ptr: pointer for old size.
- * Return: pointer.
+ * wordcounter - counts words and the letters in them
+ * @str: string to count
+ * @pos: position of the word to count characters from
+ * @firstchar: position of the first letter of the word
+ * if pos = 0, count the number of chars in the word
+ * else count number of words
+ * Return: wordcount if pos == 0,
+ * length of word if pos > 0,
+ * position of word if pos > 0 && firstchar > 0
  */
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+int wordcounter(char *str, int pos, char firstchar)
 {
-	char *ptr2;
-	unsigned int x = 0;
+	int i, wordcount, charcount, flag;
 
-	if (new_size == old_size)
-		return (ptr);
-	if ((new_size == 0) && (ptr != NULL))
+	str[0] != ' ' ? (wordcount = 1) : (wordcount = 0);
+	for (i = 0, flag = 0; str[i]; i++)
 	{
-		free(ptr);
-		return (NULL);
+		if (str[i] == ' ' && str[i + 1] != ' ' && str[i + 1] != '\0' && flag == 0)
+		{
+			wordcount++;
+			flag = 1;
+		}
+		if (pos > 0 && pos == wordcount)
+		{
+			if (pos > 0 && pos == wordcount && firstchar > 0)
+				return (i);
+			for (charcount = 0; str[i + charcount + 1] != ' '; charcount++)
+				;
+			return (charcount);
+		}
+		if (str[i] == ' ')
+			flag = 0;
 	}
-	ptr2 = (malloc(new_size));
-	if (ptr2 == NULL)
+	return (wordcount);
+}
+/**
+ * strtow - convert a string into a 2d array of words
+ * @str: string to convert
+ * Return: double pointer to 2d array
+ */
+char **strtow(char *str)
+{
+	int wc, wordlen, getfirstchar, len, i, j;
+	char **p;
+
+	for (len = 0; str[len]; len++)
+		;
+	if (str == NULL)
 		return (NULL);
-	if (ptr != NULL)
+	wc = wordcounter(str, 0, 0);
+	if (len == 0 || wc == 0)
+		return (NULL);
+	p = malloc((wc + 1) * sizeof(void *));
+	if (p == NULL)
+		return (NULL);
+	for (i = 0, wordlen = 0; i < wc; i++)
 	{
-		for (x = 0; x < old_size && x < new_size; x++)
-			ptr2[x] = ((char *)ptr)[x];
-		free(ptr);
+		/* Allocate memory for nested elements */
+		wordlen = wordcounter(str, i + 1, 0);
+		if (i == 0 && str[i] != ' ')
+			wordlen++;
+		p[i] = malloc(wordlen * sizeof(char) + 1);
+		if (p[i] == NULL)
+		{
+			for ( ; i >= 0; --i)
+				free(p[i]);
+			free(p);
+			return (NULL);
+		}
+		/* initialize each element of the nested array with the word*/
+		getfirstchar = wordcounter(str, i + 1, 1);
+		if (str[0] != ' ' && i > 0)
+			getfirstchar++;
+		else if (str[0] == ' ')
+			getfirstchar++;
+		for (j = 0; j < wordlen; j++)
+			p[i][j] = str[getfirstchar + j];
+		p[i][j] = '\0';
 	}
-	return (ptr2);
+	p[i] = NULL;
+	return (p);
 }
