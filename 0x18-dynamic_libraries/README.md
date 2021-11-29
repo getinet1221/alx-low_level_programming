@@ -15,6 +15,7 @@ What is a dynamic library, how does it work, how to create one, and how to use i
 - I know, you’re missing C when coding in Python. So let’s fix that!
 - Create a dynamic library that contains C functions that can be called from Python. 
 [3. Code injection: Win the Giga Millions!](https://github.com/getinet1221/alx-low_level_programming/blob/master/0x18-dynamic_libraries/101-make_me_win.sh)
+
 - I bought a ticket for the Giga Millions and chose these numbers: 9, 8, 10, 24, 75 + 9. If you could run two commands on the same server where the Giga Millions program runs, could you make me win the Jackpot?
 
 - Our mole got us a copy of the program, you can download it here. Our mole also gave us a piece of documentation:
