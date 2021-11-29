@@ -7,7 +7,7 @@ What is a dynamic library, how does it work, how to create one, and how to use i
 Create the dynamic library libholberton.so containing all the functions listed below:
 [1. Without libraries what have we? We have no past and no future](https://github.com/getinet1221/alx-low_level_programming/blob/master/0x18-dynamic_libraries/libdynamic.so)
 Create a script that creates a dynamic library called liball.so from all the .c files that are in the current directory.
-<hr/>
+
 ### Author
 - [Getinet Amare Mekonnen](https://www.github.com/getinet1221)
 - [Telegram](https://t.me/gama2112)
