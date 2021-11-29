@@ -8,6 +8,6 @@ Create the dynamic library libholberton.so containing all the functions listed b
 [1. Without libraries what have we? We have no past and no future]()
 Create a script that creates a dynamic library called liball.so from all the .c files that are in the current directory.
 <hr/>
-### Author
+###Author
 - [Getinet Amare Mekonnen](https://www.github.com/getinet1221)
 - [Telegram](https://t.me/gama2112)
